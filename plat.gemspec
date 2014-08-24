@@ -22,10 +22,12 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = %w[README.md CONTRIBUTORS.md LICENSE.txt]
   
   spec.add_dependency 'fog', '~> 1.23.0'
+  spec.add_dependency 'aws-sdk', '~> 1.51.0'
 
   spec.add_development_dependency 'bundler', '>= 1.6'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'dotenv'
   # spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.3.0'
 end
