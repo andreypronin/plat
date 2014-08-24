@@ -6,6 +6,9 @@ DevOps platform management. Makes most deployment headaches go away and greatly 
 
 TODO: Describe the problem & the solution
 
+[![Build Status](https://travis-ci.org/moonfly/plat.svg?branch=master)](https://travis-ci.org/moonfly/plat)
+[![Coverage Status](https://img.shields.io/coveralls/moonfly/plat.svg)](https://coveralls.io/r/moonfly/plat?branch=master)
+
 ## Installation
 
 Add this line to your application's Gemfile:
