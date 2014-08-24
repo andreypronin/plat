@@ -1,5 +1,9 @@
 require 'plat/version'
+require 'plat/config'
+require 'plat/env'
 
 module Plat
-  # Your code goes here...
+  def initialize(env=nil)
+    env= env
+  end
 end
