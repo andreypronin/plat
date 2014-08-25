@@ -1,4 +1,5 @@
 require 'plat/env/config'
+require 'plat/env/auth'
 
 module Plat
   class Env
