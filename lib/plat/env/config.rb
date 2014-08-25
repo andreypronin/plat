@@ -9,7 +9,7 @@ module Plat
 
     with_configuration do
       AWS_KEYS.each do |var|
-        has var.to_sym, classes: String, default: ENV[var.upcase]
+        has var.to_sym, classes: String, default: (ENV[var.upcase] || '???')
       end
       has :name_prefix, classes: String, default: ''
       has :app_name, classes: String, default: 'myapp'
