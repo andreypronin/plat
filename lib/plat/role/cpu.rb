@@ -1,6 +1,9 @@
 module Plat
-  class Role
+  module Role
     class Cpu < Plat::Role::Basic
+      def ec2
+        @ec2 ||= AWS::EC2.new(layout.aws_options)
+      end
     end
   end
 end

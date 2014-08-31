@@ -11,6 +11,7 @@ describe Plat::Layout::Configuration do
     end
     expect(subject).to respond_to :test
     expect(subject).to respond_to :test=
+    expect(subject.param_names).to include(:test)
   end
   
   it 'allows settings variables passed as a hash and/or block' do
@@ -176,6 +177,15 @@ describe Plat::Layout::Configuration do
     
     expect{subject.test2=7}.not_to raise_error
     expect(subject.test2).to eq 8
+  end
+  
+  it 'prints variables in to_s and inspect' do
+    class << subject
+      param :some_param
+    end
+    subject.some_param = "some value"
+    expect(subject.to_s).to include "some_param='some value'"
+    expect(subject.inspect).to include "some_param='some value'"
   end
 end
 

@@ -10,6 +10,7 @@ module Plat
     end
   end
 end
+
 module Plat
   class Layout
     def aws_options

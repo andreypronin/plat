@@ -7,5 +7,9 @@ module Plat
       configure(options,&block)
       configuration.lock
     end
+    
+    def inspect
+      "<#{self.class} #{configuration.to_s}>"
+    end
   end
 end

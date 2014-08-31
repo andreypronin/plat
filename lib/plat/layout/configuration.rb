@@ -30,7 +30,24 @@ module Plat
         self
       end
       
+      def self.param_names
+        @param_names ||= []
+      end
+      def param_names
+        self.singleton_class.param_names + self.class.param_names
+      end
+      def to_s
+        param_names.map do |name|
+          "#{name}='#{self.send(name)}'"
+        end.join("; ")
+      end
+      def inspect
+        "<#{self.class} #{self.to_s}>"
+      end
+      
       def self.param(name,options={})
+        param_names << name.to_sym
+        
         inst_var = "@#{name.to_s}"
         define_method(name) do
           if !instance_variable_defined?(inst_var) && options.has_key?(:default)

@@ -28,6 +28,8 @@ end
 describe Plat::Layout do
   let(:subject) { Plat::Layout.new }
   it 'has required AWS configuration variables with correct default values' do
+    expect(subject.configuration.param_names).to include :aws_access_key_id, :aws_secret_access_key, :env, :name_prefix, :app_name
+    
     expect(subject.configuration.aws_access_key_id).to eq (ENV["AWS_ACCESS_KEY_ID"] || '???')
     expect(subject.configuration.aws_secret_access_key).to eq (ENV["AWS_SECRET_ACCESS_KEY"] || '???')
     expect(subject.configuration.env).to eq ''

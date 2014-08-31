@@ -1,7 +1,7 @@
 require 'aws-sdk'
 
 module Plat
-  class Role
+  module Role
     class Basic
       # Common implementation
       attr_reader :layout, :role, :options
@@ -19,6 +19,12 @@ module Plat
       end
       def type
         Plat::Role.registered_types.find(->{[nil]}) { |elem| elem[1] == self.class }.first
+      end
+      def inspect
+        "<#{self.class} role='#{self.role}'>"
+      end
+      def to_s
+        { role => Hash(options) }.to_s
       end
     end
   end

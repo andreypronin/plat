@@ -1,5 +1,5 @@
 module Plat
-  class Role
+  module Role
     class Cache < Plat::Role::Basic
     end
   end

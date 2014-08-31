@@ -47,4 +47,13 @@ describe Plat::Role::Basic do
       expect{role.count}.to raise_error
     end
   end
+  it 'prints role in inspect' do
+    role = Plat::Role.create("test-layout", "some role", { type: :testtesttest, x: 78 })
+    expect(role.inspect).to include "role='some role'"
+  end
+  it 'prints itself as hash in to_s' do
+    role = Plat::Role.create("test-layout", "some role", { type: :testtesttest, x: 78 })
+    template = { "some role" => { type: :testtesttest, x: 78 } }
+    expect(role.to_s).to eq template.to_s
+  end
 end
