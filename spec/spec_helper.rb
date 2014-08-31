@@ -4,10 +4,17 @@ Coveralls.wear!
 require 'dotenv'
 Dotenv.load
 
-unless ENV.has_key?("AWS_ACCESS_KEY_ID") && ENV.has_key?("AWS_SECRET_ACCESS_KEY")
+if ENV.has_key?("STUB_AWS") || 
+  !ENV.has_key?("AWS_ACCESS_KEY_ID") || 
+  !ENV.has_key?("AWS_SECRET_ACCESS_KEY")
   # Test in the environment when AWS credentials are not provided
   require 'aws-sdk'
-  puts 'Stubbing AWS'
+  puts "Stubbing AWS (#{ENV.has_key?("STUB_AWS") ? "forced" : "no keys"})"
+  
+  RSpec.configure do |c|
+    c.filter_run_excluding :live_aws
+  end
+  
   AWS.stub! # see https://forums.aws.amazon.com/thread.jspa?threadID=114617
   #
   # Further capabilities:
