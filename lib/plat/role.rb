@@ -9,9 +9,10 @@ module Plat
 
     def self.create(layout,role,options)
       if type = options[:type]
-        raise ArgumentError.new "Wrong type for role #{@role}: #{options[:type]}" unless registered_types.keys.include?(type)
+        raise ArgumentError.new "Wrong type for role #{@role}: #{options[:type]}" unless registered_types.member?(type)
       else
-        type = registered_types.keys.include?(role.to_sym) ? role.to_sym : :cpu
+        rtype = role.downcase.to_sym
+        type = registered_types.member?(rtype) ? rtype : :cpu
       end
       registered_types[type].new(layout,role,options)
     end

@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Plat::Layout do
   it 'specifies options for AWS' do
     layout = Plat::Layout.new do |config|
