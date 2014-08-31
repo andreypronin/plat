@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.rdoc_options = ['--charset=UTF-8']
   spec.extra_rdoc_files = %w[README.md CONTRIBUTORS.md LICENSE.txt]
   
-  spec.required_ruby_version = '>= 2.0.0'
+  spec.required_ruby_version = '>= 2.1.0'
   
   spec.add_dependency 'aws-sdk', '~> 1.51.0'
 
