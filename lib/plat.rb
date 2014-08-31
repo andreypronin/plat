@@ -1,2 +1,2 @@
 require 'plat/version'
-require 'plat/env'
+require 'plat/layout'
