@@ -20,6 +20,11 @@ module Plat
       def type
         Plat::Role.registered_types.find(->{[nil]}) { |elem| elem[1] == self.class }.first
       end
+
+      def resource_name(id=0)
+        layout.aws_resource_name(role,id)
+      end
+
       def inspect
         "<#{self.class} role='#{self.role}'>"
       end
