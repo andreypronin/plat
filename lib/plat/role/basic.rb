@@ -1,14 +1,22 @@
 require 'aws-sdk'
+require 'plat/role/iam_role'
 
 module Plat
   module Role
     class Basic
-      # Common implementation
+      extend Forwardable
       attr_reader :layout, :role, :options
+      def_delegators :@layout, :configuration
+      def_delegators :configuration, :env
+      
       def initialize(layout,role,options)
         @layout = layout
         @role = role
-        @options = options
+        @options = options.
+                    merge(Hash(options[:default])).
+                    merge(Hash(options["default"])).
+                    merge(Hash(options[env.to_sym])).
+                    merge(Hash(options[env.to_s]))
       end
       def count
         @count ||= begin
@@ -30,6 +38,11 @@ module Plat
       end
       def to_s
         { role => Hash(options) }.to_s
+      end
+      
+      def allow_access(policy,access_type)
+        # TODO
+        # policy.allow
       end
     end
   end

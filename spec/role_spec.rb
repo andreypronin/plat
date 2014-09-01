@@ -7,13 +7,14 @@ describe Plat::Role do
     end
     Plat::Role.register :testtesttest, TestRole
   end
+  let(:the_layout) { Plat::Layout.new }
   it 'allows registering role classes' do
     expect(Plat::Role.registered_types[:testtesttest]).to eq TestRole
   end
   it 'creates correct role instances' do
     {
-      "some role" => Plat::Role.create( nil, "some role", { type: :testtesttest }), # explicit type specification
-      "testtesttest" => Plat::Role.create( nil, "testtesttest", {})                 # implicit type from role
+      "some role" => Plat::Role.create( the_layout, "some role", { type: :testtesttest }), # explicit type specification
+      "testtesttest" => Plat::Role.create( the_layout, "testtesttest", {})                 # implicit type from role
     }.each_pair do |role_name, role|
       expect(role).to be_a TestRole
       expect(role.type).to eq :testtesttest
