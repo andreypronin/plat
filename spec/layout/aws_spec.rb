@@ -14,11 +14,11 @@ describe Plat::Layout do
   
   it 'builds AWS resource names' do
     layout1 = Plat::Layout.new do |config|
-      config.app_name = "SuperApp"
+      config.app_name = "Super App"
       config.name_prefix = "ThePrefix"
-      config.env = "MyEnv"
+      config.env = "My Env"
     end
-    expect(layout1.aws_resource_name("NumbersCruncher",997)).to eq "ThePrefix-SuperApp-MyEnv-NumbersCruncher-997"
+    expect(layout1.aws_resource_name("NumbersCruncher",997)).to eq "ThePrefix-Super_App-My_Env-NumbersCruncher-997"
     
     layout2 = Plat::Layout.new # use defaults
     expect(layout2.aws_resource_name("Database")).to eq "Database-0"
