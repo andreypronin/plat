@@ -2,25 +2,23 @@ require 'yaml'
 
 module Plat
   class Layout
-    class Configuration
-      def convert_roles(roles_def)
-        case roles_def
-          when Hash then roles_def
-          when Array 
-            roles_def.inject({}) do |result,elem|
-              result.merge! convert_roles(elem)
-            end
-          when IO, StringIO, Tempfile then YAML.load(roles_def)
-          when String, Pathname
-            output = {}
-            File.open(roles_def,"r") { |f| output = YAML.load(f) }
-            output
-          else
-            raise ArgumentError.new("Wrong class for 'roles' value: #{roles_def.class}")
-        end
+    def convert_roles(roles_def)
+      case roles_def
+        when Hash then roles_def
+        when Array 
+          roles_def.inject({}) do |result,elem|
+            result.merge! convert_roles(elem)
+          end
+        when IO, StringIO, Tempfile then YAML.load(roles_def)
+        when String, Pathname
+          output = {}
+          File.open(roles_def,"r") { |f| output = YAML.load(f) }
+          output
+        else
+          raise ArgumentError.new("Wrong class for 'roles' value: #{roles_def.class}")
       end
-      param :roles, lockable: true, default: Hash.new, convert: :convert_roles
     end
+    def_config_param :roles, lockable: true, default: Hash.new, convert: :convert_roles
   end
 end
 
